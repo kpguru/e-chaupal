@@ -3,12 +3,45 @@
 </head>
 
 <body>
-  <h1>Welcome to E-Chaupal</h1>
-
-  {{> hello}}
+  <div class="header">
+    <div class="nav">
+      <a href="/team">Team</a>
+      <a href="/">Home</a>
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="center-text">Welcome to E-Chaupal</h1>
+  </div>
+  <div class="footer"></div>
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+  <div class="container">
+    <h2>Coming soon ....</h2>
+  </div>
+</template>
+
+<template name="team">
+  <div class="container">
+    <h1>Our Team</h1>
+    <div style="float: left; margin-right: 20px;">
+      <p>Kapil Patidar</p>
+      <img src="images/kapil-patidar.JPG" alt="Kapil Patidar" height="150" width="150"> 
+    </div>
+  
+    <div style="float: left; margin-right: 20px;">
+      <p>Akshay Babar</p>
+      <img src="images/kapil-patidar.JPG" alt="Kapil Patidar" height="150" width="150"> 
+    </div>
+    
+    <div style="float: left; margin-right: 20px;">
+      <p>Gyan Gupta</p>
+      <img src="images/kapil-patidar.JPG" alt="Kapil Patidar" height="150" width="150"> 
+    </div>
+    
+    <div style="float: left; margin-right: 20px;">
+      <p>Dilip Chauhan</p>
+      <img src="images/kapil-patidar.JPG" alt="Kapil Patidar" height="150" width="150"> 
+    </div>
+  </div>
 </template>

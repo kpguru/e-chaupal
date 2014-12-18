@@ -1,1 +1,14 @@
 /* CSS declarations go here */
+.center-text{
+  text-align: center;
+}
+
+.header, .container, .footer{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.header .nav a{
+  float: right;
+  margin-right: 10px;
+}

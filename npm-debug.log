@@ -1,0 +1,224 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'meteorite' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'meteorite', null ]
+5 verbose cache add name=undefined spec="meteorite" args=["meteorite",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'meteorite',
+6 verbose parsed url   path: 'meteorite',
+6 verbose parsed url   href: 'meteorite' }
+7 silly lockFile 8f2f99a9-meteorite meteorite
+8 verbose lock meteorite /home/rails/.npm/8f2f99a9-meteorite.lock
+9 silly lockFile 8f2f99a9-meteorite meteorite
+10 silly lockFile 8f2f99a9-meteorite meteorite
+11 verbose addNamed [ 'meteorite', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile bf6d5fee-meteorite meteorite@
+14 verbose lock meteorite@ /home/rails/.npm/bf6d5fee-meteorite.lock
+15 silly addNameRange { name: 'meteorite', range: '*', hasData: false }
+16 verbose request where is /meteorite
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id c57e08acff507bf2
+19 verbose url raw /meteorite
+20 verbose url resolving [ 'https://registry.npmjs.org/', './meteorite' ]
+21 verbose url resolved https://registry.npmjs.org/meteorite
+22 verbose request where is https://registry.npmjs.org/meteorite
+23 info trying registry request attempt 1 at 17:58:24
+24 http GET https://registry.npmjs.org/meteorite
+25 http 200 https://registry.npmjs.org/meteorite
+26 silly registry.get cb [ 200,
+26 silly registry.get   { date: 'Thu, 18 Dec 2014 12:28:30 GMT',
+26 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+26 silly registry.get     etag: '"5CBL6OVRWKRCJNLV1X7BJ7CUK"',
+26 silly registry.get     'content-type': 'application/json',
+26 silly registry.get     'cache-control': 'max-age=60',
+26 silly registry.get     'content-length': '92760',
+26 silly registry.get     'accept-ranges': 'bytes',
+26 silly registry.get     via: '1.1 varnish',
+26 silly registry.get     age: '0',
+26 silly registry.get     'x-served-by': 'cache-lax1427-LAX',
+26 silly registry.get     'x-cache': 'MISS',
+26 silly registry.get     'x-cache-hits': '0',
+26 silly registry.get     'x-timer': 'S1418905710.661728,VS0,VE296',
+26 silly registry.get     vary: 'Accept',
+26 silly registry.get     'keep-alive': 'timeout=10, max=50',
+26 silly registry.get     connection: 'Keep-Alive' } ]
+27 silly addNameRange number 2 { name: 'meteorite', range: '*', hasData: true }
+28 silly addNameRange versions [ 'meteorite',
+28 silly addNameRange   [ '0.0.1',
+28 silly addNameRange     '0.0.2',
+28 silly addNameRange     '0.0.3',
+28 silly addNameRange     '0.0.4',
+28 silly addNameRange     '0.0.5',
+28 silly addNameRange     '0.0.6',
+28 silly addNameRange     '0.0.7',
+28 silly addNameRange     '0.0.8',
+28 silly addNameRange     '0.0.9',
+28 silly addNameRange     '0.0.10',
+28 silly addNameRange     '0.0.11',
+28 silly addNameRange     '0.0.12',
+28 silly addNameRange     '0.0.13',
+28 silly addNameRange     '0.0.14',
+28 silly addNameRange     '0.0.15',
+28 silly addNameRange     '0.0.16',
+28 silly addNameRange     '0.0.17',
+28 silly addNameRange     '0.0.18',
+28 silly addNameRange     '0.0.19',
+28 silly addNameRange     '0.1.0',
+28 silly addNameRange     '0.1.1',
+28 silly addNameRange     '0.2.0',
+28 silly addNameRange     '0.2.1',
+28 silly addNameRange     '0.2.2',
+28 silly addNameRange     '0.3.0',
+28 silly addNameRange     '0.3.1',
+28 silly addNameRange     '0.3.3',
+28 silly addNameRange     '0.4.0',
+28 silly addNameRange     '0.4.1',
+28 silly addNameRange     '0.4.2',
+28 silly addNameRange     '0.4.3',
+28 silly addNameRange     '0.4.4',
+28 silly addNameRange     '0.4.5',
+28 silly addNameRange     '0.4.6',
+28 silly addNameRange     '0.4.7',
+28 silly addNameRange     '0.4.8',
+28 silly addNameRange     '0.4.9',
+28 silly addNameRange     '0.5.0',
+28 silly addNameRange     '0.5.1',
+28 silly addNameRange     '0.6.0',
+28 silly addNameRange     '0.6.1',
+28 silly addNameRange     '0.6.2',
+28 silly addNameRange     '0.6.3',
+28 silly addNameRange     '0.6.4',
+28 silly addNameRange     '0.6.5',
+28 silly addNameRange     '0.6.6',
+28 silly addNameRange     '0.6.7',
+28 silly addNameRange     '0.6.8',
+28 silly addNameRange     '0.6.9',
+28 silly addNameRange     '0.6.10',
+28 silly addNameRange     '0.6.11',
+28 silly addNameRange     '0.6.12',
+28 silly addNameRange     '0.6.13',
+28 silly addNameRange     '0.6.14',
+28 silly addNameRange     '0.6.15',
+28 silly addNameRange     '0.6.16',
+28 silly addNameRange     '0.7.0',
+28 silly addNameRange     '0.7.1',
+28 silly addNameRange     '0.7.2',
+28 silly addNameRange     '0.7.3',
+28 silly addNameRange     '0.7.4',
+28 silly addNameRange     '0.7.5',
+28 silly addNameRange     '0.7.6',
+28 silly addNameRange     '0.7.7',
+28 silly addNameRange     '0.7.8',
+28 silly addNameRange     '0.9.0',
+28 silly addNameRange     '0.9.1',
+28 silly addNameRange     '0.9.2' ] ]
+29 verbose addNamed [ 'meteorite', '0.9.2' ]
+30 verbose addNamed [ '0.9.2', '0.9.2' ]
+31 silly lockFile 718a0fc1-meteorite-0-9-2 meteorite@0.9.2
+32 verbose lock meteorite@0.9.2 /home/rails/.npm/718a0fc1-meteorite-0-9-2.lock
+33 silly lockFile 22ade59e-rg-meteorite-meteorite-0-9-2-tgz https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz
+34 verbose lock https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz /home/rails/.npm/22ade59e-rg-meteorite-meteorite-0-9-2-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz',
+35 verbose addRemoteTarball   '93e74f9459f61d22899259dc31756da9a67d1e07' ]
+36 info retry fetch attempt 1 at 17:58:32
+37 verbose fetch to= /tmp/npm-9169-fEyorc5Z/registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz
+38 http GET https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz
+39 http 200 https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz
+40 silly lockFile 22ade59e-rg-meteorite-meteorite-0-9-2-tgz https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz
+41 silly lockFile 22ade59e-rg-meteorite-meteorite-0-9-2-tgz https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz
+42 silly lockFile 718a0fc1-meteorite-0-9-2 meteorite@0.9.2
+43 silly lockFile 718a0fc1-meteorite-0-9-2 meteorite@0.9.2
+44 silly lockFile bf6d5fee-meteorite meteorite@
+45 silly lockFile bf6d5fee-meteorite meteorite@
+46 silly resolved [ { name: 'meteorite',
+46 silly resolved     version: '0.9.2',
+46 silly resolved     homepage: 'http://oortcloud.github.com/meteorite',
+46 silly resolved     engines: [ 'node >=0.8.0' ],
+46 silly resolved     description: 'Installer & smart package manager for Meteor',
+46 silly resolved     author:
+46 silly resolved      { name: 'Tom Coleman',
+46 silly resolved        email: 'tom@percolatestudio.com',
+46 silly resolved        url: 'http://percolatestudio.com' },
+46 silly resolved     dependencies:
+46 silly resolved      { ddp: '>=0.3.1 <0.5.0',
+46 silly resolved        underscore: '1.3.3',
+46 silly resolved        wrench: '1.3.9',
+46 silly resolved        fstream: '>=0.1.18',
+46 silly resolved        optimist: '>=0.3.4',
+46 silly resolved        prompt: '0.2.11',
+46 silly resolved        colors: '0.6.0-1',
+46 silly resolved        async: '0.2.9',
+46 silly resolved        rolling_timeout_exec: '>=0.0.1' },
+46 silly resolved     devDependencies: { mocha: '>=1.2.2', connect: '>=2.3.6', which: '>=1.0.5' },
+46 silly resolved     scripts:
+46 silly resolved      { test: 'mocha spec/unit spec/acceptance -t 240000 -R spec',
+46 silly resolved        flushcache: 'rm -rf spec/support/cache',
+46 silly resolved        postinstall: 'sh ./completions/postinstall.sh' },
+46 silly resolved     repository:
+46 silly resolved      { type: 'git',
+46 silly resolved        url: 'https://github.com/oortcloud/meteorite.git' },
+46 silly resolved     bin: { mrt: './bin/mrt.js' },
+46 silly resolved     bugs: { url: 'https://github.com/oortcloud/meteorite/issues' },
+46 silly resolved     _id: 'meteorite@0.9.2',
+46 silly resolved     _shasum: '93e74f9459f61d22899259dc31756da9a67d1e07',
+46 silly resolved     _from: 'meteorite@',
+46 silly resolved     _npmVersion: '1.4.9',
+46 silly resolved     _npmUser: { name: 'tmeasday', email: 'tom@percolatestudio.com' },
+46 silly resolved     maintainers: [ [Object], [Object] ],
+46 silly resolved     dist:
+46 silly resolved      { shasum: '93e74f9459f61d22899259dc31756da9a67d1e07',
+46 silly resolved        tarball: 'http://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz' },
+46 silly resolved     directories: {},
+46 silly resolved     _resolved: 'https://registry.npmjs.org/meteorite/-/meteorite-0.9.2.tgz' } ]
+47 info install meteorite@0.9.2 into /usr/local/lib
+48 info installOne meteorite@0.9.2
+49 verbose lib/node_modules/meteorite unbuild
+50 verbose tar unpack /home/rails/.npm/meteorite/0.9.2/package.tgz
+51 silly lockFile 91db5695-local-lib-node-modules-meteorite tar:///usr/local/lib/node_modules/meteorite
+52 verbose lock tar:///usr/local/lib/node_modules/meteorite /home/rails/.npm/91db5695-local-lib-node-modules-meteorite.lock
+53 silly lockFile e0a36321--npm-meteorite-0-9-2-package-tgz tar:///home/rails/.npm/meteorite/0.9.2/package.tgz
+54 verbose lock tar:///home/rails/.npm/meteorite/0.9.2/package.tgz /home/rails/.npm/e0a36321--npm-meteorite-0-9-2-package-tgz.lock
+55 silly gunzTarPerm modes [ '775', '664' ]
+56 error Error: EACCES, mkdir '/usr/local/lib/node_modules/meteorite'
+56 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/meteorite']
+56 error   errno: 3,
+56 error   code: 'EACCES',
+56 error   path: '/usr/local/lib/node_modules/meteorite',
+56 error   fstream_type: 'Directory',
+56 error   fstream_path: '/usr/local/lib/node_modules/meteorite',
+56 error   fstream_class: 'DirWriter',
+56 error   fstream_stack:
+56 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+56 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+56 error      'Object.oncomplete (fs.js:107:15)' ] }
+57 error Please try running this command again as root/Administrator.
+58 error System Linux 3.5.0-54-generic
+59 error command "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "meteorite"
+60 error cwd /home/rails/work/node/e-chaupal
+61 error node -v v0.10.33
+62 error npm -v 1.4.28
+63 error path /usr/local/lib/node_modules/meteorite
+64 error fstream_path /usr/local/lib/node_modules/meteorite
+65 error fstream_type Directory
+66 error fstream_class DirWriter
+67 error code EACCES
+68 error errno 3
+69 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/meteorite'
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+70 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+70 error fstream_stack Object.oncomplete (fs.js:107:15)
+71 verbose exit [ 3, true ]

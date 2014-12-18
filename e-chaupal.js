@@ -2,6 +2,11 @@ if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
 
+  Router.map(function(){
+    this.route('hello', {path: '/'});
+    this.route('team');
+  });
+
   Template.hello.helpers({
     counter: function () {
       return Session.get("counter");

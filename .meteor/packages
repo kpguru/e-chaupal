@@ -10,4 +10,5 @@ accounts-ui
 accounts-twitter
 bootstrap
 http
+iron:router
 
