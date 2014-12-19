@@ -6,9 +6,10 @@
 meteor-platform
 autopublish
 insecure
-accounts-ui
 accounts-twitter
 bootstrap
 http
 iron:router
+accounts-ui
+accounts-password
 
