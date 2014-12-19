@@ -3,17 +3,17 @@ if (Meteor.isClient) {
   Session.setDefault("counter", 0);
 
   Router.map(function(){
-    this.route('hello', {path: '/'});
+    this.route('home', {path: '/'});
     this.route('team');
   });
 
-  Template.hello.helpers({
+  Template.body.helpers({
     counter: function () {
       return Session.get("counter");
     }
   });
 
-  Template.hello.events({
+  Template.body.events({
     'click button': function () {
       // increment the counter when button is clicked
       Session.set("counter", Session.get("counter") + 1);
