@@ -1,3 +1,41 @@
+<head>
+  <title>e-chaupal</title>
+</head>
+
+<body>
+  <div class="header">
+    <div class="nav">
+      <a href="/team">Team</a>
+      <a href="/">Home</a>
+      {{> loginButtons}}
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="center-text">Welcome to E-Chaupal</h1>
+  </div>
+  <div class="footer"></div>
+</body>
+
+<template name="hello">
+  <div class="container">
+    {{#if currentUser}}
+      {{#if is_admin currentUser.username}} 
+        <h4> You are on Admin Dashboard</h4> 
+        <h5>Add new news feed link :</h5>
+        <form class="new-task">
+          <input type="text" name="news_name" placeholder="News Name" />
+          <input type="text" name="news_category" placeholder="News Category" />
+          <input type="text" name="feed_link" placeholder="Feed Url" />
+        </form>
+      {{else}}
+        <h4> You are on User Dashboard</h4>
+      {{/if}}
+    {{else}}
+      <h3>Coming soon ... </h3>
+    {{/if}}
+  </div>
+</template>
+
 <template name="team">
   <div class="container">
     <h1>Our Team</h1>
