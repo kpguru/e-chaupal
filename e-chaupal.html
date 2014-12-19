@@ -18,7 +18,16 @@
 
 <template name="hello">
   <div class="container">
-    <h2>Coming soon ....</h2>
+    {{#if currentUser}}
+      <h5>Add new news feed link :</h5>
+      <form class="new-task">
+        <input type="text" name="news_name" placeholder="News Name" />
+        <input type="text" name="news_category" placeholder="News Category" />
+        <input type="text" name="feed_link" placeholder="Feed Url" />
+      </form>
+    {{else}}
+      <h3>Coming soon ... </h3>
+    {{/if}}
   </div>
 </template>
 
