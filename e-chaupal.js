@@ -10,6 +10,10 @@ if (Meteor.isClient) {
   Template.hello.helpers({
     counter: function () {
       return Session.get("counter");
+    },
+    
+    is_admin: function(current_user_name){
+      return current_user_name == "admin-echaupal"
     }
   });
 

@@ -19,12 +19,17 @@
 <template name="hello">
   <div class="container">
     {{#if currentUser}}
-      <h5>Add new news feed link :</h5>
-      <form class="new-task">
-        <input type="text" name="news_name" placeholder="News Name" />
-        <input type="text" name="news_category" placeholder="News Category" />
-        <input type="text" name="feed_link" placeholder="Feed Url" />
-      </form>
+      {{#if is_admin currentUser.username}} 
+        <h4> You are on Admin Dashboard</h4> 
+        <h5>Add new news feed link :</h5>
+        <form class="new-task">
+          <input type="text" name="news_name" placeholder="News Name" />
+          <input type="text" name="news_category" placeholder="News Category" />
+          <input type="text" name="feed_link" placeholder="Feed Url" />
+        </form>
+      {{else}}
+        <h4> You are on User Dashboard</h4>
+      {{/if}}
     {{else}}
       <h3>Coming soon ... </h3>
     {{/if}}
