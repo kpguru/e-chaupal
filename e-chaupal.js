@@ -1,6 +1,7 @@
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
+  Session.setDefault("toi_feeds", "");
 
   Router.map(function(){
     this.route('home', {path: '/'});
@@ -24,6 +25,21 @@ if (Meteor.isClient) {
     }
   });
   
+  Template.home.helpers({
+    toi_feeds: function () {
+      return Session.get("toi_feeds");
+    }
+  });
+  
+  Template.home.events({
+    'click #toi_news': function () {
+      Meteor.call("getTOIFeeds", function(error, results) {
+        console.log(results.data.Item)
+        Session.set("toi_feeds", results.data.Item);
+      });
+    }
+  });
+  
   // At the bottom of the client code
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
@@ -33,5 +49,12 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
+  });
+  
+  Meteor.methods({
+      getTOIFeeds: function () {
+        this.unblock();
+        return Meteor.http.call("GET", "https://devru-times-of-india.p.mashape.com/feeds/feedurllist.cms?catagory=city", {headers:{"X-Mashape-Key": "H0Mfd6GJwCmshjmpPgV0VvI4vpMBp1YDD7njsniawxQif3hVOS"}});
+      }
   });
 }
