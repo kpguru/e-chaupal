@@ -41,8 +41,8 @@ if (Meteor.isClient) {
     },
     
     'click .news_blog': function (event,template) {
-      Meteor.call("getNewsByTopics", function(error, results) {
-        console.log(results.data.NewsItem);
+      var url = event.target.getAttribute("data-url");
+      Meteor.call("getNewsByTopics", url, function(error, results) {
         Session.set("toi_by_topics", results.data.NewsItem);
       });
     }
@@ -71,9 +71,9 @@ if (Meteor.isServer) {
         return Meteor.http.call("GET", "https://devru-times-of-india.p.mashape.com/feeds/feedurllist.cms?catagory=city", {headers:{"X-Mashape-Key": "H0Mfd6GJwCmshjmpPgV0VvI4vpMBp1YDD7njsniawxQif3hVOS"}});
       },
       
-      getNewsByTopics: function () {
+      getNewsByTopics: function (url) {
         this.unblock();
-        return Meteor.http.call("GET", "http://timesofindia.indiatimes.com/feeds/newsdefaultfeeds.cms?feedtype=sjson");
+        return Meteor.http.call("GET", url);
       }
   });
 }
