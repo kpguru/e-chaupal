@@ -23,6 +23,11 @@
           <li>
             <a href="/team">Team</a>
           </li>
+          {{#if is_admin currentUser.username}}
+            <li><a href="/news">New News</a></li>
+            <li><a href="/category">New News Category</a></li>
+            <li><a href="/feed">New Feed URL</a></li>
+          {{/if}}
         </ul>
       </div>
       <!-- /.navbar-collapse -->

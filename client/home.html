@@ -2,41 +2,16 @@
   <div class="container">
     <!-- Marketing Icons Section -->
     <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Welcome to E-Chaupal
-            </h1>
-        </div>
+      <div class="col-lg-12">
+        <h1 class="page-header">
+            Welcome to E-Chaupal
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
         {{#if is_admin currentUser.username}}
-          <span>Add new feed url</span>
-          <form>
-            <input type="text" name="news_name" placeholder="Type news name" style="height: 30px;"/>
-            <input type="text" name="news_category" placeholder="Type news category" style="height: 30px;" />
-            <input type="text" name="feed_url" placeholder="Type feed url" style="height: 30px;"/>
-            <input type="submit" value="Submit" class="btn btn-primary">
-          </form>
-        
-          <table class="table">
-              <thead>
-                <tr>
-                  <th>News Name</th>
-                  <th>Category Name</th>
-                  <th>Feed Url</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                  {{#each feed_urls}}
-                    <tr>
-                      <td>{{news_name}}</td>
-                      <td>{{news_category}}</td>
-                      <td>{{feed_url}}</td>
-                      <td><button class="delete">&times;</button></td>
-                    </tr>
-                  {{/each}}
-              </tbody>
-          </table>
+          <h2> You are on E-Chaupal Admin Dashboard</h2>
         {{else}}
           {{#each toi_feeds}}
             <div>
@@ -44,6 +19,7 @@
             </div>
           {{/each}}
         {{/if}}
+      </div>
     </div>
     <!-- /.row -->
   </div>

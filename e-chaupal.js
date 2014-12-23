@@ -1,4 +1,7 @@
+News = new Mongo.Collection("news");
+Categories = new Mongo.Collection("categories");
 NewsFeedUrls = new Mongo.Collection("news_feed_urls");
+NewsContents = new Mongo.Collection("news_contents");
 
 if (Meteor.isClient) {
   // counter starts at 0
@@ -9,6 +12,9 @@ if (Meteor.isClient) {
     this.route('home', {path: '/'});
     this.route('team');
     this.route('newsshow')
+    this.route('news')
+    this.route('category')
+    this.route('feed')
   });
 
   Template.body.helpers({
@@ -18,15 +24,11 @@ if (Meteor.isClient) {
   });
 
   Template.home.helpers({
-    toi_feeds: function () {
-      return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
-    },
-    
     is_admin: function(current_user_name){
       return current_user_name == "admin-echaupal"
     },
     
-    feed_urls: function(){
+    toi_feeds: function () {
       return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
     }
   });
@@ -71,6 +73,39 @@ if (Meteor.isClient) {
     }
   });
   
+  Template.category.events({    
+    'submit form' : function (event) {
+      var news_name = event.target.news_name.value;
+      var news_category = event.target.news_category.value;
+      var feed_url = event.target.feed_url.value;      
+      
+      NewsFeedUrls.insert({
+        news_name: news_name,
+        news_category: news_category,
+        feed_url: feed_url,
+        createdAt: new Date()
+      });
+
+      // Clear form
+      event.target.news_name.value = "";
+      event.target.news_category.value = "";
+      event.target.feed_url.value = "";
+      
+      // Prevent default form submit
+      return false;
+    },
+    
+    "click .delete": function () {
+      NewsFeedUrls.remove(this._id);
+    }
+  });
+  
+  Template.category.helpers({
+    feed_urls: function(){
+      return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
+    }
+  });
+  
   // At the bottom of the client code
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
@@ -79,7 +114,6 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
   });
   
   Meteor.methods({
