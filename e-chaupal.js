@@ -45,7 +45,6 @@ if (Meteor.isClient) {
   Template.home.events({    
     'click .news_blog': function (event,template) {
       var url = event.target.getAttribute("data-url");
-      alert(url);
       Meteor.call("getNewsByTopics", url, function(error, results) {
         Session.set("toi_by_topics", results.data.NewsItem);
       });
