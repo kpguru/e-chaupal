@@ -73,7 +73,8 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.category.events({    
+  //~ Feed block start
+  Template.feed.events({    
     'submit form' : function (event) {
       var news_name = event.target.news_name.value;
       var news_category = event.target.news_category.value;
@@ -100,11 +101,43 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.category.helpers({
+  Template.feed.helpers({
     feed_urls: function(){
       return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
     }
   });
+  
+  //~ Feed block end
+    
+  //~ News block start
+  Template.news.events({    
+    'submit form' : function (event) {
+      var name = event.target.name.value;
+      
+      News.insert({
+        name: name,
+        createdAt: new Date()
+      });
+
+      // Clear form
+      event.target.name.value = "";
+      
+      // Prevent default form submit
+      return false;
+    },
+    
+    "click .delete": function () {
+      News.remove(this._id);
+    }
+  });
+  
+  Template.news.helpers({
+    news: function(){
+      return News.find({}, {sort: {createdAt: -1}});
+    }
+  });
+  
+  //~ News block end
   
   // At the bottom of the client code
   Accounts.ui.config({

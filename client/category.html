@@ -7,35 +7,6 @@
                 Welcome to E-Chaupal
             </h1>
         </div>
-        <span>Add new feed url</span>
-        <form>
-          <input type="text" name="news_name" placeholder="Type news name" style="height: 30px;"/>
-          <input type="text" name="news_category" placeholder="Type news category" style="height: 30px;" />
-          <input type="text" name="feed_url" placeholder="Type feed url" style="height: 30px;"/>
-          <input type="submit" value="Submit" class="btn btn-primary">
-        </form>
-
-        <table class="table">
-            <thead>
-              <tr>
-                <th>News Name</th>
-                <th>Category Name</th>
-                <th>Feed Url</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-                {{#each feed_urls}}
-                  <tr>
-                    <td>{{news_name}}</td>
-                    <td>{{news_category}}</td>
-                    <td>{{feed_url}}</td>
-                    <td><button class="delete">&times;</button></td>
-                  </tr>
-                {{/each}}
-            </tbody>
-        </table>
     </div>
     <!-- /.row -->
   </div>
