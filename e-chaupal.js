@@ -11,22 +11,11 @@ if (Meteor.isClient) {
   });
 
   Template.body.helpers({
-    counter: function () {
-      return Session.get("counter");
-    },
-    
     is_admin: function(current_user_name){
       return current_user_name == "admin-echaupal"
     }
   });
 
-  Template.body.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
-    }
-  });
-  
   Template.home.helpers({
     toi_feeds: function () {
       return Session.get("toi_feeds");
