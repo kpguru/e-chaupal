@@ -3,7 +3,6 @@ NewsFeedUrls = new Mongo.Collection("news_feed_urls");
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
-  Session.setDefault("toi_feeds", "");
   Session.setDefault("toi_by_topics", "");
 
   Router.map(function(){
@@ -31,7 +30,7 @@ if (Meteor.isClient) {
   
   Template.home.helpers({
     toi_feeds: function () {
-      return Session.get("toi_feeds");
+      return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
     },
     
     is_admin: function(current_user_name){
@@ -43,15 +42,10 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.home.events({
-    'click #toi_news': function () {
-      Meteor.call("getTOIFeeds", function(error, results) {
-        Session.set("toi_feeds", results.data.Item);
-      });
-    },
-    
+  Template.home.events({    
     'click .news_blog': function (event,template) {
       var url = event.target.getAttribute("data-url");
+      alert(url);
       Meteor.call("getNewsByTopics", url, function(error, results) {
         Session.set("toi_by_topics", results.data.NewsItem);
       });
@@ -101,11 +95,6 @@ if (Meteor.isServer) {
   });
   
   Meteor.methods({
-      getTOIFeeds: function () {
-        this.unblock();
-        return Meteor.http.call("GET", "https://devru-times-of-india.p.mashape.com/feeds/feedurllist.cms?catagory=city", {headers:{"X-Mashape-Key": "H0Mfd6GJwCmshjmpPgV0VvI4vpMBp1YDD7njsniawxQif3hVOS"}});
-      },
-      
       getNewsByTopics: function (url) {
         this.unblock();
         return Meteor.http.call("GET", url);
