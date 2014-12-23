@@ -12,8 +12,16 @@
       <div class="col-lg-12">
         <span>Add new feed url</span>
         <form>
-          <input type="text" name="news_name" placeholder="Type news name" style="height: 30px;"/>
-          <input type="text" name="news_category" placeholder="Type news category" style="height: 30px;" />
+           <select name="news_id">
+           {{#each news}}
+              <option value="{{_id}}">{{name}}</option>
+           {{/each}}
+          </select>
+          <select name="category_id">
+           {{#each news_categories}}
+              <option value="{{_id}}">{{name}}</option>
+           {{/each}}
+          </select>
           <input type="text" name="feed_url" placeholder="Type feed url" style="height: 30px;"/>
           <input type="submit" value="Submit" class="btn btn-primary">
         </form>
@@ -31,8 +39,8 @@
             <tbody>
                 {{#each feed_urls}}
                   <tr>
-                    <td>{{news_name}}</td>
-                    <td>{{news_category}}</td>
+                    <td>{{get_news_name news_id}}</td>
+                    <td>{{get_category_name category_id}}</td>
                     <td>{{feed_url}}</td>
                     <td><button class="delete">&times;</button></td>
                   </tr>

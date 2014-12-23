@@ -39,31 +39,6 @@ if (Meteor.isClient) {
       Meteor.call("getNewsByTopics", url, function(error, results) {
         Session.set("toi_by_topics", results.data.NewsItem);
       });
-    },
-    
-    'submit form' : function (event) {
-      var news_name = event.target.news_name.value;
-      var news_category = event.target.news_category.value;
-      var feed_url = event.target.feed_url.value;      
-      
-      NewsFeedUrls.insert({
-        news_name: news_name,
-        news_category: news_category,
-        feed_url: feed_url,
-        createdAt: new Date()
-      });
-
-      // Clear form
-      event.target.news_name.value = "";
-      event.target.news_category.value = "";
-      event.target.feed_url.value = "";
-      
-      // Prevent default form submit
-      return false;
-    },
-    
-    "click .delete": function () {
-      NewsFeedUrls.remove(this._id);
     }
   });
   
@@ -76,20 +51,20 @@ if (Meteor.isClient) {
   //~ Feed block start
   Template.feed.events({    
     'submit form' : function (event) {
-      var news_name = event.target.news_name.value;
-      var news_category = event.target.news_category.value;
+      var news_id = event.target.news_id.value;
+      var category_id = event.target.category_id.value;
       var feed_url = event.target.feed_url.value;      
       
       NewsFeedUrls.insert({
-        news_name: news_name,
-        news_category: news_category,
+        news_id: news_id,
+        category_id: category_id,
         feed_url: feed_url,
         createdAt: new Date()
       });
 
       // Clear form
-      event.target.news_name.value = "";
-      event.target.news_category.value = "";
+      event.target.news_id.value = "";
+      event.target.category_id.value = "";
       event.target.feed_url.value = "";
       
       // Prevent default form submit
@@ -104,6 +79,20 @@ if (Meteor.isClient) {
   Template.feed.helpers({
     feed_urls: function(){
       return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
+    },
+    news: function(){
+      return News.find({}, {sort: {createdAt: -1}});
+    },
+    news_categories: function(){
+      return Categories.find({}, {sort: {createdAt: -1}});
+    },
+    
+    get_news_name: function(id){
+      return News.findOne({_id: id}).name;
+    },
+    
+    get_category_name: function(id){
+      return Categories.findOne({_id: id}).name;
     }
   });
   
@@ -144,8 +133,7 @@ if (Meteor.isClient) {
     },
     
     get_news_name: function(id){
-      console.log(News.find({_id: id}));
-      return News.find({_id: id});
+      return News.findOne({_id: id}).name;
     }
   });
   
