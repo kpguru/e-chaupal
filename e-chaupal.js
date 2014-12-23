@@ -108,6 +108,48 @@ if (Meteor.isClient) {
   });
   
   //~ Feed block end
+  
+  //~ Category block start
+  Template.category.events({    
+    'submit form' : function (event) {
+      var news_id = event.target.news_id.value;
+      var name = event.target.name.value;
+      
+      Categories.insert({
+        news_id: news_id,
+        name: name,
+        createdAt: new Date()
+      });
+
+      // Clear form
+      event.target.news_id.value = "";
+      event.target.name.value = "";
+      
+      // Prevent default form submit
+      return false;
+    },
+    
+    "click .delete": function () {
+      Categories.remove(this._id);
+    }
+  });
+  
+  Template.category.helpers({
+    categories: function(){
+      return Categories.find({}, {sort: {createdAt: -1}});
+    },
+    
+    news: function(){
+      return News.find({}, {sort: {createdAt: -1}});
+    },
+    
+    get_news_name: function(id){
+      console.log(News.find({_id: id}));
+      return News.find({_id: id});
+    }
+  });
+  
+  //~ Feed block end
     
   //~ News block start
   Template.news.events({    

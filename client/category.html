@@ -7,6 +7,36 @@
                 Welcome to E-Chaupal
             </h1>
         </div>
+        <span>Add news category</span>
+        <form>
+           <select name="news_id">
+           {{#each news}}
+              <option value="{{_id}}">{{name}}</option>
+           {{/each}}
+          </select> 
+          <input type="text" name="name" placeholder="Type news category" style="height: 30px;" />
+          <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+
+        <table class="table">
+            <thead>
+              <tr>
+                <th>News ID</th>
+                <th>Category Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {{#each categories}}
+                  <tr>
+                    <td>{{news_id}}</td>
+                    <td>{{name}}</td>
+                    <td><button class="delete">&times;</button></td>
+                  </tr>
+                {{/each}}
+            </tbody>
+        </table>
     </div>
     <!-- /.row -->
   </div>
