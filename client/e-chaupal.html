@@ -31,86 +31,9 @@
   </nav>
 </body>
 
-<template name="home">
-  <div class="container">
-    <!-- Marketing Icons Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Welcome to E-Chaupal
-            </h1>
-            <a id="toi_news" href="#">Get Feeds</a>
-        </div>
 
-        {{#each toi_feeds}}
-          <div class="col-md-4">
-              <div class="panel panel-default">
-                  <div class="panel-heading">
-                      <h4><i class="fa fa-fw fa-check"></i> {{name}}</h4>
-                  </div>
-                  <div class="panel-body">
-                      <a href="/newsshow" class="news_blog" data-url="{{defaulturl}}">{{defaulturl}}</a>
-                  </div>
-              </div>
-          </div>
-        {{/each}}
-    </div>
-    <!-- /.row -->
-  </div>
-</template>
 
-<template name="team">
-  <div class="container">
-    <!-- Portfolio Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Our Team</h2>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <a href="portfolio-item.html">
-                <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
-            </a>
-        </div>
-    </div>
-    <!-- /.row -->
-  </div>
-</template>
 
-<template name="newsshow">
-  <div class="container">
-    {{#each toi_by_topics}}
-      <div style="margin-top: 20px;">
-        <span style="font-weight: bold; color: blue;">{{HeadLine}} - {{DateLine}}</span><br>
-        <span>{{Keywords}}</span><br>
-        <span>{{Story}}</span><br>
-        <span><img src="{{Image.Photo}}"></span>
-      </div>
-    {{/each}}
-  </div>
-</template>
+
+
 
