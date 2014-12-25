@@ -13,9 +13,9 @@
         {{#if is_admin currentUser.username}}
           <h2> You are on E-Chaupal Admin Dashboard</h2>
         {{else}}
-          {{#each toi_feeds}}
+          {{#each feed_urls}}
             <div>
-              <a href="/newsshow" class="news_blog" data-url="{{feed_url}}">{{news_name}} - {{news_category}}</a>
+              <a href="/newsshow" class="news_blog" data-url="{{feed_url}}">{{get_news_display_name category_id}} - {{get_category_name category_id}}</a>
             </div>
           {{/each}}
         {{/if}}

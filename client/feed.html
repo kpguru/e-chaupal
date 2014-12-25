@@ -12,14 +12,9 @@
       <div class="col-lg-12">
         <span>Add new feed url</span>
         <form>
-           <select name="news_id">
-           {{#each news}}
-              <option value="{{_id}}">{{name}}</option>
-           {{/each}}
-          </select>
           <select name="category_id">
-           {{#each news_categories}}
-              <option value="{{_id}}">{{name}}</option>
+           {{#each categories}}
+              <option value="{{_id}}">{{get_news_name news_id}} - {{name}}</option>
            {{/each}}
           </select>
           <input type="text" name="feed_url" placeholder="Type feed url" style="height: 30px;"/>
@@ -29,8 +24,7 @@
         <table class="table">
             <thead>
               <tr>
-                <th>News Name</th>
-                <th>Category Name</th>
+                <th>News Category Name</th>
                 <th>Feed Url</th>
                 <th>Action</th>
               </tr>
@@ -39,8 +33,7 @@
             <tbody>
                 {{#each feed_urls}}
                   <tr>
-                    <td>{{get_news_name news_id}}</td>
-                    <td>{{get_category_name category_id}}</td>
+                    <td>{{get_news_display_name category_id}} - {{get_category_name category_id}}</td>
                     <td>{{feed_url}}</td>
                     <td><button class="delete">&times;</button></td>
                   </tr>
