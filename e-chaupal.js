@@ -206,7 +206,7 @@ if (Meteor.isClient) {
     }
   }
   
-  Router.onBeforeAction(requireLogin, {except: ['home', 'team']});
+  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow']});
 }
 
 if (Meteor.isServer) {
