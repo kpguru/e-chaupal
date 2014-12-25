@@ -195,6 +195,18 @@ if (Meteor.isClient) {
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
   });
+  
+  var requireLogin = function() {
+    if (! Meteor.user()) {
+      // If user is not logged in render landingpage
+      this.render('home');
+    } else {
+      //if user is logged in render whatever route was requested
+      this.next();
+    }
+  }
+  
+  Router.onBeforeAction(requireLogin, {except: ['home', 'team']});
 }
 
 if (Meteor.isServer) {
