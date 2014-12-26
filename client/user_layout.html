@@ -4,13 +4,14 @@
       <div id="header">
         <ul>
           {{#if is_admin currentUser.username}}
-            <li><a href="/news">New News</a></li>
+            <li class="f"><a href="/news">New News</a></li>
             <li><a href="/category">New News Category</a></li>
             <li><a href="/feed">New Feed URL</a></li>
+          {{else}}
+            <li class="f"><a href="/">Home</a></li>
+            <li><a href="/team">Team</a></li>
+            <li><a href="#">Contact Page</a></li>
           {{/if}}
-          <li class="f"><a href="/">Home</a></li>
-          <li><a href="/team">Team</a></li>
-          <li><a href="#">Contact Page</a></li>
           <li>{{> loginButtons}}</li>
         </ul>
         <p class="links">Subscribe: <a href="#">Posts</a> | <a href="#">Comments</a> | <a href="#">Email</a> </p>

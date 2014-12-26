@@ -31,9 +31,17 @@ if (Meteor.isClient) {
       layoutTemplate: 'user_layout'
     });
     
-    this.route('news')
-    this.route('category')
-    this.route('feed')
+    this.route('news', {
+      layoutTemplate: 'admin_layout'
+    });
+    
+    this.route('category', {
+      layoutTemplate: 'admin_layout'
+    });
+    
+    this.route('feed', {
+      layoutTemplate: 'admin_layout'
+    });
   });
   
   Template.user_layout.helpers({
@@ -59,6 +67,20 @@ if (Meteor.isClient) {
     }
   });
   
+  Template.admin_layout.helpers({
+    is_admin: function(current_user_name){
+      return current_user_name == "admin-echaupal"
+    },
+    
+    feed_urls: function(){
+      return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
+    },
+    
+    get_category_name: function(id){
+      return Categories.findOne({_id: id}).name;
+    }
+  });
+    
   Template.newsshow.helpers({
     toi_by_topics: function () {
       return Session.get("toi_by_topics");

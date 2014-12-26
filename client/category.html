@@ -1,43 +1,32 @@
 <template name="category">
-  <div class="container">
-    <!-- Marketing Icons Section -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Welcome to E-Chaupal
-            </h1>
-        </div>
-        <span>Add news category</span>
-        <form>
-           <select name="news_id">
-           {{#each news}}
-              <option value="{{_id}}">{{name}}</option>
-           {{/each}}
-          </select> 
-          <input type="text" name="name" placeholder="Type news category" style="height: 30px;" />
-          <input type="submit" value="Submit" class="btn btn-primary">
-        </form>
+  <h2><b>Add news category</b></h2>
+  <form>
+     <select name="news_id">
+     {{#each news}}
+        <option value="{{_id}}">{{name}}</option>
+     {{/each}}
+    </select> 
+    <input type="text" name="name" placeholder="Type news category"/>
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
 
-        <table class="table">
-            <thead>
-              <tr>
-                <th>News ID</th>
-                <th>Category Name</th>
-                <th>Action</th>
-              </tr>
-            </thead>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>News ID</th>
+          <th>Category Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-            <tbody>
-                {{#each categories}}
-                  <tr>
-                    <td>{{get_news_name news_id}}</td>
-                    <td>{{name}}</td>
-                    <td><button class="delete btn btn-primary">&times;</button></td>
-                  </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
-    <!-- /.row -->
-  </div>
+      <tbody>
+          {{#each categories}}
+            <tr>
+              <td>{{get_news_name news_id}}</td>
+              <td>{{name}}</td>
+              <td><button class="delete btn btn-primary">&times;</button></td>
+            </tr>
+          {{/each}}
+      </tbody>
+  </table>
 </template>

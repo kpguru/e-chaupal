@@ -1,47 +1,32 @@
 <template name="feed">
-  <div class="container">
-    <!-- Marketing Icons Section -->
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">
-            Welcome to E-Chaupal
-        </h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        <span>Add new feed url</span>
-        <form>
-          <select name="category_id">
-           {{#each categories}}
-              <option value="{{_id}}">{{get_news_name news_id}} - {{name}}</option>
-           {{/each}}
-          </select>
-          <input type="text" name="feed_url" placeholder="Type feed url" style="height: 30px;"/>
-          <input type="submit" value="Submit" class="btn btn-primary">
-        </form>
+  <h2><b>Add new feed url</b></h2>
+  <form>
+    <select name="category_id">
+     {{#each categories}}
+        <option value="{{_id}}">{{get_news_name news_id}} - {{name}}</option>
+     {{/each}}
+    </select>
+    <input type="text" name="feed_url" placeholder="Type feed url"/>
+    <input type="submit" value="Submit" class="btn btn-primary">
+  </form>
 
-        <table class="table">
-            <thead>
-              <tr>
-                <th>News Category Name</th>
-                <th>Feed Url</th>
-                <th>Action</th>
-              </tr>
-            </thead>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>News Category Name</th>
+          <th>Feed Url</th>
+          <th>Action</th>
+        </tr>
+      </thead>
 
-            <tbody>
-                {{#each feed_urls}}
-                  <tr>
-                    <td>{{get_news_display_name category_id}} - {{get_category_name category_id}}</td>
-                    <td>{{feed_url}}</td>
-                    <td><button class="delete btn btn-primary">&times;</button></td>
-                  </tr>
-                {{/each}}
-            </tbody>
-        </table>
-      </div>
-    </div>
-    <!-- /.row -->
-  </div>
+      <tbody>
+          {{#each feed_urls}}
+            <tr>
+              <td>{{get_news_display_name category_id}} - {{get_category_name category_id}}</td>
+              <td>{{feed_url}}</td>
+              <td><button class="delete btn btn-primary">&times;</button></td>
+            </tr>
+          {{/each}}
+      </tbody>
+  </table>
 </template>
