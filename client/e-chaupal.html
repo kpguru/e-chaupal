@@ -6,32 +6,3 @@
   <meta name="author" content="">
   <title>e-chaupal</title>
 </head>
-
-<body>
-  <!-- Navigation -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li style="margin-top: 13px;">
-            {{> loginButtons}}
-          </li>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/team">Team</a>
-          </li>
-          {{#if is_admin currentUser.username}}
-            <li><a href="/news">New News</a></li>
-            <li><a href="/category">New News Category</a></li>
-            <li><a href="/feed">New Feed URL</a></li>
-          {{/if}}
-        </ul>
-      </div>
-      <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-  </nav>
-</body>

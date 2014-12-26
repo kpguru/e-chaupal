@@ -1,12 +1,11 @@
 <template name="newsshow">
-  <div class="container">
-    {{#each toi_by_topics}}
-      <div style="margin-top: 20px;">
-        <span style="font-weight: bold; color: blue;">{{HeadLine}} - {{DateLine}}</span><br>
-        <span>{{Keywords}}</span><br>
-        <span>{{Story}}</span><br>
-        <span><img src="{{Image.Photo}}"></span>
-      </div>
-    {{/each}}
-  </div>
+  {{#each toi_by_topics}}
+    <div class="post">
+      <div class="thumb"><img src="{{Image.Photo}}" alt="" /></div>
+      <h2><a href="#" title="{{Headline}}">{{ get_news_small_headline HeadLine}}</a></h2>
+      <p class="date">{{DateLine}}</p>
+      <p>{{ news_small_description Story }}</p>
+      <a class="continue" href="newsdetails" data-image="{{Image.Photo}}" data-headline="{{HeadLine}}" data-dateline="{{DateLine}}" data-story="{{Story}}">Continue Reading</a>
+    </div>
+  {{/each}}
 </template>

@@ -1,26 +1,8 @@
 <template name="home">
-  <div class="container">
-    <!-- Marketing Icons Section -->
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="page-header">
-            Welcome to E-Chaupal
-        </h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12">
-        {{#if is_admin currentUser.username}}
-          <h2> You are on E-Chaupal Admin Dashboard</h2>
-        {{else}}
-          {{#each feed_urls}}
-            <div>
-              <a href="/newsshow" class="news_blog" data-url="{{feed_url}}">{{get_news_display_name category_id}} - {{get_category_name category_id}}</a>
-            </div>
-          {{/each}}
-        {{/if}}
-      </div>
-    </div>
-    <!-- /.row -->
+  <div style="margin: 20px;">
+    <div class="thumb"><img src="{{get_news_image}}" alt="" /></div>
+    <h2>{{get_news_headline}}</h2>
+    <p class="date">{{get_news_dateline}}</p>
+    <p>{{ get_news_story }}</p>
   </div>
 </template>

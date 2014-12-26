@@ -8,23 +8,62 @@ if (Meteor.isClient) {
   Session.setDefault("counter", 0);
   Session.setDefault("toi_by_topics", "");
   Session.setDefault("news_categories", "");
+  Session.setDefault("news_image", "");
+  Session.setDefault("news_headline", "");
+  Session.setDefault("news_dateline", "");
+  Session.setDefault("news_story", "");
 
   Router.map(function(){
-    this.route('home', {path: '/'});
-    this.route('team');
-    this.route('newsshow')
+    this.route('home', {
+      path: '/',
+      layoutTemplate: 'user_layout'
+    });
+        
+    this.route('team', {
+      layoutTemplate: 'user_layout'
+    });
+    
+    this.route('newsshow', {
+      layoutTemplate: 'user_layout'
+    });
+    
+    this.route('newsdetails', {
+      layoutTemplate: 'user_layout'
+    });
+    
     this.route('news')
     this.route('category')
     this.route('feed')
   });
-
-  Template.body.helpers({
+  
+  Template.user_layout.helpers({
     is_admin: function(current_user_name){
       return current_user_name == "admin-echaupal"
+    },
+    
+    feed_urls: function(){
+      return NewsFeedUrls.find({}, {sort: {createdAt: -1}});
+    },
+    
+    get_category_name: function(id){
+      return Categories.findOne({_id: id}).name;
     }
   });
-
-  Template.home.helpers({
+  
+  Template.user_layout.events({    
+    'click .news_blog': function (event,template) {
+      var url = event.target.getAttribute("data-url");
+      Meteor.call("getNewsByTopics", url, function(error, results) {
+        Session.set("toi_by_topics", results.data.NewsItem);
+      });
+    }
+  });
+  
+  Template.newsshow.helpers({
+    toi_by_topics: function () {
+      return Session.get("toi_by_topics");
+    },
+    
     is_admin: function(current_user_name){
       return current_user_name == "admin-echaupal"
     },
@@ -40,21 +79,46 @@ if (Meteor.isClient) {
     get_news_display_name: function(id){
       var news_id = Categories.findOne({_id: id}).news_id;
       return News.findOne({_id: news_id}).name;
+    },
+    
+    news_small_description: function(description){
+      return description.substring(0,350);
+    },
+    
+    get_news_small_headline: function(headline){
+      return headline.substring(0,50);
     }
   });
   
-  Template.home.events({    
-    'click .news_blog': function (event,template) {
-      var url = event.target.getAttribute("data-url");
-      Meteor.call("getNewsByTopics", url, function(error, results) {
-        Session.set("toi_by_topics", results.data.NewsItem);
-      });
+  Template.newsshow.events({    
+    'click .continue': function (event) {
+      var news_image = event.target.getAttribute("data-image");
+      var news_headline = event.target.getAttribute("data-headline");
+      var news_dateline = event.target.getAttribute("data-dateline");
+      var news_story = event.target.getAttribute("data-story");
+
+      Session.set('news_image', news_image);
+      Session.set('news_headline', news_headline);
+      Session.set('news_dateline', news_dateline);
+      Session.set('news_story', news_story);
     }
   });
   
-  Template.newsshow.helpers({
-    toi_by_topics: function () {
-      return Session.get("toi_by_topics");
+  Template.home.helpers({
+    get_news_image: function () {
+      return Session.get("news_image");
+    },
+    
+    get_news_headline: function () {
+      return Session.get("news_headline");
+    },
+    
+    get_news_dateline: function () {
+      return Session.get("news_dateline");
+    },
+    
+    get_news_story: function () {
+      return Session.get("news_story");
     }
   });
   

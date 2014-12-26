@@ -1,0 +1,73 @@
+<template name="user_layout">
+  <body>
+    <div id="wrapper">
+      <div id="header">
+        <ul>
+          {{#if is_admin currentUser.username}}
+            <li><a href="/news">New News</a></li>
+            <li><a href="/category">New News Category</a></li>
+            <li><a href="/feed">New Feed URL</a></li>
+          {{/if}}
+          <li class="f"><a href="/">Home</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="#">Contact Page</a></li>
+          <li>{{> loginButtons}}</li>
+        </ul>
+        <p class="links">Subscribe: <a href="#">Posts</a> | <a href="#">Comments</a> | <a href="#">Email</a> </p>
+        <div class="break"></div>
+        <div class="logo">
+          <h1>E-Chaupal</h1>
+          <p>GrepRuby Webtech Pvt Ltd</p>
+        </div>
+        <div class="ad468x60"> <a href="#"><img src="images/ad468x60.gif" alt="" /></a> </div>
+        <div class="break"></div>
+        <ol>
+          {{#each feed_urls}}
+            <li><a href="/newsshow" class="news_blog" data-url="{{feed_url}}">{{get_category_name category_id}}</a></li>
+          {{/each}}
+        </ol>
+        <div class="break"></div>
+      </div>
+      
+      <div id="content">
+        {{> yield}}
+      </div>
+      
+      <div id="sidebar">
+        <!-- begin ads -->
+        <div class="ads"> <a href="http://all-free-download.com/free-website-templates/"><img src="images/ad125x125.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/ad125x125.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/ad125x125.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/ad125x125.jpg" alt="" /></a> </div>
+        <!-- end ads -->
+        <!-- begin search -->
+        <form class="search" action="http://all-free-download.com/free-website-templates/">
+          <input type="text" name="s" id="s" />
+          <button type="submit">Search</button>
+        </form>
+        <!-- end search -->
+        <div class="wrapper">
+          <!-- begin popular posts -->
+          <h2>Popular Posts</h2>
+          <ul>
+            <li><a href="#">Make Money Online Creating Websites</a></li>
+            <li><a href="#">Top 100 Internet Marketing Tips</a></li>
+            <li><a href="#">Tutorial: How to add Videos in your Post</a></li>
+            <li><a href="#">Sample Post Unordered List</a></li>
+            <li><a href="#">Sample Post Blockquote</a></li>
+          </ul>
+          <!-- end popular posts -->
+          <!-- begin flickr photos -->
+          <h2>GrepRuby Photos</h2>
+          <div class="flickr"> <a href="http://all-free-download.com/free-website-templates/"><img src="images/_thumb3.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/_thumb4.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/_thumb5.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/_thumb6.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/_thumb7.jpg" alt="" /></a> <a href="http://all-free-download.com/free-website-templates/"><img src="images/_thumb8.jpg" alt="" /></a> </div>
+          <!-- end flickr photos -->
+          <!-- begin featured video -->
+          <h2>Featured Video</h2>
+          <div class="video"> <img src="images/_video.jpg" alt="" /> </div>
+        </div>
+      </div>
+      
+      <div id="footer">
+        <p>Copyright &copy; 2014 - <a href="#">E-Chaupal</a> &middot; All Rights Reserved</p>
+        <p>Managed by: <a href="http://www.grepruby.com">GrepRuby Webtech Pvt Ltd</a></p>
+      </div>
+    </div>
+  </body>
+</template>
