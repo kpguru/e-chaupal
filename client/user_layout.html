@@ -8,7 +8,7 @@
             <li><a href="/category">New News Category</a></li>
             <li><a href="/feed">New Feed URL</a></li>
           {{else}}
-            <li class="f"><a href="/">Home</a></li>
+            <li class="f home_page"><a href="/newsshow">Home</a></li>
             <li><a href="/team">Team</a></li>
             <li><a href="#">Contact Page</a></li>
           {{/if}}
@@ -24,7 +24,7 @@
         <div class="break"></div>
         <ol>
           {{#each feed_urls}}
-            <li><a href="/newsshow" class="news_blog" data-url="{{feed_url}}">{{get_category_name category_id}}</a></li>
+            <li><a href="/newsshow" class="news_blog" data-id="{{_id}}">{{get_category_name category_id}}</a></li>
           {{/each}}
         </ol>
         <div class="break"></div>

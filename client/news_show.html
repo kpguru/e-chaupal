@@ -1,11 +1,11 @@
 <template name="newsshow">
-  {{#each toi_by_topics}}
+  {{#each news_records get_news_id}}
     <div class="post">
-      <div class="thumb"><img src="{{Image.Photo}}" alt="" /></div>
-      <h2><a href="#" title="{{Headline}}">{{ get_news_small_headline HeadLine}}</a></h2>
-      <p class="date">{{DateLine}}</p>
-      <p>{{ news_small_description Story }}</p>
-      <a class="continue" href="newsdetails" data-image="{{Image.Photo}}" data-headline="{{HeadLine}}" data-dateline="{{DateLine}}" data-story="{{Story}}">Continue Reading</a>
+      <div class="thumb"><img src="{{image}}" alt="" /></div>
+      <h2><a href="#" title="{{Headline}}">{{ get_news_small_headline headline}}</a></h2>
+      <p class="date">{{dateline}}</p>
+      <p>{{ news_small_description story }}</p>
+      <a class="continue" href="newsdetails" data-image="{{image}}" data-headline="{{headline}}" data-dateline="{{dateline}}" data-story="{{story}}">Continue Reading</a>
     </div>
   {{/each}}
 </template>

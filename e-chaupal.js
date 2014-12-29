@@ -6,7 +6,7 @@ NewsContents = new Mongo.Collection("news_contents");
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault("counter", 0);
-  Session.setDefault("toi_by_topics", "");
+  Session.setDefault("news_id", "");
   Session.setDefault("news_categories", "");
   Session.setDefault("news_image", "");
   Session.setDefault("news_headline", "");
@@ -60,10 +60,8 @@ if (Meteor.isClient) {
   
   Template.user_layout.events({    
     'click .news_blog': function (event,template) {
-      var url = event.target.getAttribute("data-url");
-      Meteor.call("getNewsByTopics", url, function(error, results) {
-        Session.set("toi_by_topics", results.data.NewsItem);
-      });
+      var id = event.target.getAttribute("data-id");
+      Session.set("news_id", id);
     }
   });
   
@@ -82,8 +80,14 @@ if (Meteor.isClient) {
   });
     
   Template.newsshow.helpers({
-    toi_by_topics: function () {
-      return Session.get("toi_by_topics");
+    
+    get_news_id: function () {
+      return Session.get("news_id");
+    },
+    
+    news_records: function (id) {
+      var contents = NewsContents.find({news_feed_url_id: id}).fetch();
+      return contents;
     },
     
     is_admin: function(current_user_name){
@@ -297,6 +301,41 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
+    var syncronize = function () {
+      news_feed_urls = NewsFeedUrls.find().fetch();
+
+      for (var i = 0; i < news_feed_urls.length; i++) {
+        feed_url = news_feed_urls[i]["feed_url"];
+        id = news_feed_urls[i]["_id"];
+        
+        news_contents = Meteor.http.call("GET", feed_url).data.NewsItem;
+        
+        for (var j = 0; j < news_contents.length; j++) {
+          news = NewsContents.findOne({news_item_id: news_contents[j]["NewsItemId"]});
+          if(news == undefined){
+            var image = "";
+            if(news_contents[j]["Image"] != undefined){
+              image = news_contents[j]["Image"]["Photo"];
+            }
+            NewsContents.insert({
+              news_feed_url_id: id,
+              news_item_id: news_contents[j]["NewsItemId"],
+              image: image,
+              headline: news_contents[j]["HeadLine"],
+              dateline: news_contents[j]["DateLine"],
+              story: news_contents[j]["Story"],
+              createdAt: new Date()
+            });
+          }
+        }
+      }
+    }
+
+    var cron = new Meteor.Cron( {
+      events:{
+        "* 1 * * *"  : syncronize,
+      }
+    });
   });
   
   Meteor.methods({
