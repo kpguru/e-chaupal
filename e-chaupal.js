@@ -102,13 +102,12 @@ if (Meteor.isClient) {
   });
     
   Template.newsshow.helpers({
-    
     get_news_id: function () {
       return Session.get("news_id");
     },
     
     news_records: function (id) {
-      var contents = NewsContents.find({news_feed_url_id: id}, {sort: {news_item_id: -1}});
+      var contents = NewsContents.find({news_feed_url_id: id}, {sort: {news_item_id: -1}, limit: 10});
       return contents;
     },
     
@@ -324,17 +323,20 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     var syncronize = function () {
+      console.log("Started Cron Job");
       news_feed_urls = NewsFeedUrls.find().fetch();
 
       for (var i = 0; i < news_feed_urls.length; i++) {
         feed_url = news_feed_urls[i]["feed_url"];
         id = news_feed_urls[i]["_id"];
+        console.log("Fetching record for " + news_feed_urls[i]["feed_url"]);
         
         news_contents = Meteor.http.call("GET", feed_url).data.NewsItem;
         
         for (var j = 0; j < news_contents.length; j++) {
           news = NewsContents.findOne({news_item_id: news_contents[j]["NewsItemId"]});
           if(news == undefined){
+            console.log("Inserting record in DB for " + news_feed_urls[i]["feed_url"]);
             var image = "";
             if(news_contents[j]["Image"] != undefined){
               image = news_contents[j]["Image"]["Photo"];
