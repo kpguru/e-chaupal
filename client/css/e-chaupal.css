@@ -489,3 +489,7 @@ h2.title {
   margin: 30px;
   width: 90%;
 }
+
+.gmnoprint img {
+    max-width: none; 
+}

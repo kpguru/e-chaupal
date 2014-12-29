@@ -51,7 +51,7 @@ if (Meteor.isClient) {
   Template.contactUs.rendered = function() {
       var mapOptions = {
           center: new google.maps.LatLng(22.691802, 75.862110),
-          zoom: 8,
+          zoom: 12,
           mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
