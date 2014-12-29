@@ -333,7 +333,7 @@ if (Meteor.isServer) {
 
     var cron = new Meteor.Cron( {
       events:{
-        "* 1 * * *"  : syncronize,
+        "* * * * *"  : syncronize,
       }
     });
   });
