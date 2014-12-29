@@ -129,6 +129,7 @@ img {
 		width: 259px; height: 420px;
 		float: left;
 		padding: 20px 15px 0 35px;
+    margin-top: 15px;
 	}
 		#content .post h2 {
 			font-family: Georgia;
