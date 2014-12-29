@@ -42,7 +42,29 @@ if (Meteor.isClient) {
     this.route('feed', {
       layoutTemplate: 'admin_layout'
     });
+    
+    this.route('contact_us', {
+      layoutTemplate: 'user_layout'
+    });
   });
+  
+  Template.contactUs.rendered = function() {
+      var mapOptions = {
+          center: new google.maps.LatLng(22.691802, 75.862110),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      var map = new google.maps.Map(document.getElementById("map-canvas"),
+          mapOptions);
+
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(22.691802, 75.862110),
+        title:'Grep Ruby Webtech Pvt Ltd, Tower 61, 1st floor, Opp. Mata Gujri Girls College, BRTS Road, Bhanwarkuaa, Indore, Madhya Pradesh 452014, India',
+        icon:'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+      });
+      marker.setMap(map);  
+  }
   
   Template.user_layout.helpers({
     is_admin: function(current_user_name){
@@ -130,7 +152,7 @@ if (Meteor.isClient) {
     }
   });
   
-  Template.home.helpers({
+  Template.newsdetails.helpers({
     get_news_image: function () {
       return Session.get("news_image");
     },
@@ -296,7 +318,7 @@ if (Meteor.isClient) {
     }
   }
   
-  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow']});
+  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow', 'newsdetails', 'contact_us']});
 }
 
 if (Meteor.isServer) {

@@ -483,3 +483,9 @@ h2.title {
 		text-decoration: none;
 	}
 /** END wordpress 2.7 comments **/
+
+#map-canvas {
+  height: 400px;
+  margin: 30px;
+  width: 90%;
+}

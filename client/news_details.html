@@ -1,8 +1,8 @@
 <template name="newsdetails">
-  <div class="post">
-    <div class="thumb"><a href="#"><img src="{{get_news_image}}" alt="" /></a></div>
-    <h2><a href="#">{{get_news_headline}}</a></h2>
-    <p class="date">{{get_news_dateline}}</p>
-    <p>{{ get_news_story }}</p>
+  <div style="margin: 20px;">
+    <div class="thumb"><img src="{{get_news_image}}" alt="" /></div>
+    <h2>{{{ get_news_headline }}}</h2>
+    <p class="date">{{{ get_news_dateline }}}</p>
+    <p>{{{ get_news_story }}}</p>
   </div>
 </template>

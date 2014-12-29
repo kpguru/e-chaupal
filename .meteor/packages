@@ -13,4 +13,5 @@ iron:router
 accounts-ui
 accounts-password
 mrt:cron
+mrt:googlemaps
 
