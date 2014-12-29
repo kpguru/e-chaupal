@@ -78,7 +78,7 @@ img {
 			margin-left: 14px;
 		}
 	#header .logo {
-		padding: 18px 18px 40px;
+    padding: 0 10px 25px;
 		float: left;
 	}
 		#header .logo h1 {
