@@ -86,7 +86,7 @@ if (Meteor.isClient) {
     },
     
     news_records: function (id) {
-      var contents = NewsContents.find({news_feed_url_id: id}).fetch();
+      var contents = NewsContents.find({news_feed_url_id: id}, {sort: {news_item_id: -1}});
       return contents;
     },
     
