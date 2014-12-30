@@ -14,4 +14,6 @@ accounts-ui
 accounts-password
 mrt:cron
 mrt:googlemaps
+accounts-google
+accounts-facebook
 
