@@ -16,4 +16,4 @@ mrt:cron
 mrt:googlemaps
 accounts-google
 accounts-facebook
-
+xml2js

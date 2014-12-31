@@ -353,6 +353,9 @@ if (Meteor.isServer) {
           }
         }
       }
+      //~ news_contents = Meteor.http.call("GET", "http://daily.bhaskar.com/rss/Indore");
+      //~ var json = XML2JS.parse(news_contents['content']);
+      //~ console.log(json["rss"]["channel"][0]["item"]);
     }
 
     var cron = new Meteor.Cron( {
