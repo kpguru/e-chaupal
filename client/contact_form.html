@@ -1,0 +1,21 @@
+<template name="contactForm">
+  <div class="post" style="height: 250px;">
+    <h2>Contact Me</h2>
+    <form> 
+      <p><label for="name">Name</label></p> 
+      <input id="name" name="name" placeholder="First and last name" required="" tabindex="1" type="text" class="lg-input"> 
+       
+      <p><label for="email">Email</label></p> 
+      <input id="email" name="email" placeholder="example@domain.com" required="" tabindex="2" type="text" class="lg-input"> 
+            
+      <p><label for="Subject">Subject</label></p> 
+      <input id="subject" name="subject" placeholder="Subject" required="" tabindex="3" type="text" class="lg-input"> 
+       
+      <p><label for="message">Your Message</label></p> 
+      <textarea name="message" id="message" tabindex="4" class="lg-input" rows="5"></textarea> <br>
+      
+      <input type="submit" value="Submit" class="btn btn-primary" tabindex="5">
+      <a class="btn btn-primary" href="/newsshow">Back to Home</a>
+    </form> 
+  </div>
+</template>

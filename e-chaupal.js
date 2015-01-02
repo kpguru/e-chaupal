@@ -46,6 +46,10 @@ if (Meteor.isClient) {
     this.route('contact_us', {
       layoutTemplate: 'user_layout'
     });
+    
+    this.route('contact_form', {
+      layoutTemplate: 'user_layout'
+    });
   });
   
   Template.contactUs.rendered = function() {
@@ -302,6 +306,34 @@ if (Meteor.isClient) {
   
   //~ News block end
   
+  //~ contact form block start
+  Template.contactForm.events({
+    'submit form' : function (event) {
+      var name = event.target.name.value;
+      var email = event.target.email.value;
+      var subject = event.target.subject.value;
+      var message = event.target.message.value;
+      
+      //~ Email.send({
+        //~ from: email,
+        //~ to: "kapil@grepruby.com",
+        //~ subject: subject,
+        //~ text: message
+      //~ });
+
+      // Clear form
+      event.target.name.value = "";
+      event.target.email.value = "";
+      event.target.subject.value = "";
+      event.target.message.value = "";
+
+      // Prevent default form submit
+      FlashMessages.sendSuccess("Thank you for connecting with us. We will respond shortly");
+      return false;
+    }
+  });
+  //~ contact form block end
+  
   // At the bottom of the client code
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
@@ -317,7 +349,7 @@ if (Meteor.isClient) {
     }
   }
   
-  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow', 'newsdetails', 'contact_us']});
+  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow', 'newsdetails', 'contact_us', 'contact_form']});
 }
 
 if (Meteor.isServer) {

@@ -14,7 +14,7 @@
           {{/if}}
           <li>{{> loginButtons}}</li>
         </ul>
-        <p class="links">Subscribe: <a href="#">Posts</a> | <a href="#">Comments</a> | <a href="#">Email</a> </p>
+        <p class="links">Subscribe: <a href="#">Posts</a> |  <a href="/contact_form">Email</a> </p>
         <div class="break"></div>
         <div class="logo">
           <h1>E-Chaupal</h1>
@@ -31,6 +31,7 @@
       </div>
       
       <div id="content">
+        {{> flashMessages}}
         {{> yield}}
       </div>
       
