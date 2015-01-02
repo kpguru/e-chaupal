@@ -504,3 +504,7 @@ h2.title {
 .lg-input{
   width: 400px !important;
 }
+
+.block-container{
+  margin: 20px;
+}

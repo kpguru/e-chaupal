@@ -1,0 +1,47 @@
+<template name="posts">
+  <div class="block-container">
+    {{#if current_user}}
+      <h3><b>New Post</b></h3>
+      <form novalidate> 
+        <p><label for="Title">Title</label></p> 
+        <input id="title" name="title" placeholder="Title" required="" tabindex="3" type="text" class="lg-input"> 
+         
+        <p><label for="description">Description</label></p> 
+        <textarea name="description" id="description" tabindex="4" class="lg-input" rows="5"></textarea> <br>
+        
+        <input type="submit" value="Submit" class="btn btn-primary" tabindex="5">
+      </form>
+    {{else}}
+      <p style="color: blue;">Login to account for new post.</p>
+    {{/if}}
+
+    <h4><b>Recent Posts</b></h4>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Posted By</th>
+            <th>Posted At</th>
+            {{#if is_admin currentUser.username}}
+              <th>Action</th>
+            {{/if}}
+          </tr>
+        </thead>
+        
+      <tbody>
+          {{#each all_posts}}
+            <tr>
+              <td>{{title}}</td>
+              <td>{{description}}</td>
+              <td>{{get_username user_id}}</td>
+              <td>{{get_formated_date createdAt}}</td>
+              {{#if is_admin currentUser.username}}
+                <td><button class="delete btn btn-primary">&times;</button></td>
+              {{/if}}
+            </tr>
+          {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>

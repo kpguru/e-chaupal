@@ -2,6 +2,7 @@ News = new Mongo.Collection("news");
 Categories = new Mongo.Collection("categories");
 NewsFeedUrls = new Mongo.Collection("news_feed_urls");
 NewsContents = new Mongo.Collection("news_contents");
+Posts = new Mongo.Collection("posts");
 
 if (Meteor.isClient) {
   // counter starts at 0
@@ -48,6 +49,10 @@ if (Meteor.isClient) {
     });
     
     this.route('contact_form', {
+      layoutTemplate: 'user_layout'
+    });
+    
+    this.route('posts', {
       layoutTemplate: 'user_layout'
     });
   });
@@ -334,6 +339,57 @@ if (Meteor.isClient) {
   });
   //~ contact form block end
   
+  
+  //~ posts block start
+  Template.posts.events({
+    'submit form' : function (event) {
+      var title = event.target.title.value;
+      var description = event.target.description.value;
+      
+      Posts.insert({
+        title: title,
+        description: description,
+        user_id: Meteor.user()._id,
+        createdAt: new Date()
+      });
+
+      // Clear form
+      event.target.title.value = "";
+      event.target.description.value = "";
+
+      // Prevent default form submit
+      FlashMessages.sendSuccess("Thank you for posting to us.");
+      return false;
+    },
+    
+    "click .delete": function () {
+      Posts.remove(this._id);
+    }
+  });
+  
+  Template.posts.helpers({
+    all_posts: function(){
+      return Posts.find({}, {sort: {createdAt: -1}});
+    },
+    
+    get_username: function(id){
+      return Meteor.users.findOne({_id: id}).username;
+    },
+    
+    current_user: function(id){
+      return (Meteor.user() == null) ? false : true;
+    },
+    
+    is_admin: function(current_user_name){
+      return current_user_name == "admin-echaupal"
+    },
+    
+    get_formated_date: function(date){
+      return date.toDateString();
+    }    
+  });
+  //~ posts block end
+  
   // At the bottom of the client code
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
@@ -349,7 +405,7 @@ if (Meteor.isClient) {
     }
   }
   
-  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow', 'newsdetails', 'contact_us', 'contact_form']});
+  Router.onBeforeAction(requireLogin, {except: ['home', 'team', 'newsshow', 'newsdetails', 'contact_us', 'contact_form', 'posts']});
 }
 
 if (Meteor.isServer) {
