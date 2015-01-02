@@ -59,7 +59,9 @@ if (Meteor.isClient) {
     
   Template.home.helpers({
     get_top_news: function(){
-      return NewsContents.find({news_feed_url_id: "MbigMRW7jqiqWtnxw"}, {sort: {news_item_id: -1}, limit: 10});
+      cat_id = Categories.findOne({name: "India"})._id;
+      feed_url_id = NewsFeedUrls.findOne({category_id: cat_id})._id;
+      return NewsContents.find({news_feed_url_id: feed_url_id}, {sort: {news_item_id: -1}, limit: 10});
     },
     
     get_category_name: function(id){
