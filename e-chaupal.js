@@ -56,6 +56,43 @@ if (Meteor.isClient) {
       layoutTemplate: 'user_layout'
     });
   });
+    
+  Template.home.helpers({
+    get_top_news: function(){
+      return NewsContents.find({news_feed_url_id: "MbigMRW7jqiqWtnxw"}, {sort: {news_item_id: -1}, limit: 10});
+    },
+    
+    get_category_name: function(id){
+      return Categories.findOne({_id: id}).name;
+    },
+    
+    get_news_display_name: function(id){
+      var news_id = Categories.findOne({_id: id}).news_id;
+      return News.findOne({_id: news_id}).name;
+    },
+    
+    news_small_description: function(description){
+      return description.substring(0,350);
+    },
+    
+    get_news_small_headline: function(headline){
+      return headline.substring(0,50);
+    }
+  });
+  
+  Template.home.events({    
+    'click .continue': function (event) {
+      var news_image = event.target.getAttribute("data-image");
+      var news_headline = event.target.getAttribute("data-headline");
+      var news_dateline = event.target.getAttribute("data-dateline");
+      var news_story = event.target.getAttribute("data-story");
+
+      Session.set('news_image', news_image);
+      Session.set('news_headline', news_headline);
+      Session.set('news_dateline', news_dateline);
+      Session.set('news_story', news_story);
+    }
+  });
   
   Template.contactUs.rendered = function() {
       var mapOptions = {
