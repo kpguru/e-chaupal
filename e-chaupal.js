@@ -490,7 +490,7 @@ if (Meteor.isServer) {
             try {
               hn_result = Meteor.http.get(items[j]["link"][0]);
             } catch (ex) {
-              hn_result = Meteor.http.get(items[1]["link"][0]);
+              continue;
             }
             
             $ = cheerio.load(hn_result.content);
