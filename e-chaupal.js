@@ -450,39 +450,80 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     var syncronize = function () {
-      console.log("Started Cron Job");
+      console.log("Started Cron Job For Times Of India");
       news_feed_urls = NewsFeedUrls.find().fetch();
 
       for (var i = 0; i < news_feed_urls.length; i++) {
         feed_url = news_feed_urls[i]["feed_url"];
         id = news_feed_urls[i]["_id"];
-        console.log("Fetching record for " + news_feed_urls[i]["feed_url"]);
-        
-        news_contents = Meteor.http.call("GET", feed_url).data.NewsItem;
-        
-        for (var j = 0; j < news_contents.length; j++) {
-          news = NewsContents.findOne({news_item_id: news_contents[j]["NewsItemId"]});
-          if(news == undefined){
-            console.log("Inserting record in DB for " + news_feed_urls[i]["feed_url"]);
-            var image = "";
-            if(news_contents[j]["Image"] != undefined){
-              image = news_contents[j]["Image"]["Photo"];
+        if (feed_url.indexOf("timesofindia") >= 0 || feed_url.indexOf("beautypageants") >= 0){
+          console.log("Fetching record for " + news_feed_urls[i]["feed_url"]);        
+          news_contents = Meteor.http.call("GET", feed_url).data.NewsItem;
+          
+          for (var j = 0; j < news_contents.length; j++) {
+            news = NewsContents.findOne({news_item_id: news_contents[j]["NewsItemId"]});
+            if(news == undefined){
+              console.log("Inserting record in DB for " + news_feed_urls[i]["feed_url"]);
+              var image = "";
+              if(news_contents[j]["Image"] != undefined){
+                image = news_contents[j]["Image"]["Photo"];
+              }
+              NewsContents.insert({
+                news_feed_url_id: id,
+                news_item_id: news_contents[j]["NewsItemId"],
+                image: image,
+                headline: news_contents[j]["HeadLine"],
+                dateline: news_contents[j]["DateLine"],
+                story: news_contents[j]["Story"],
+                createdAt: new Date()
+              });
             }
-            NewsContents.insert({
-              news_feed_url_id: id,
-              news_item_id: news_contents[j]["NewsItemId"],
-              image: image,
-              headline: news_contents[j]["HeadLine"],
-              dateline: news_contents[j]["DateLine"],
-              story: news_contents[j]["Story"],
-              createdAt: new Date()
+          }
+        }else{
+          console.log("Fetching record for " + news_feed_urls[i]["feed_url"]);
+          news_contents = Meteor.http.call("GET", feed_url);
+          var json = XML2JS.parse(news_contents['content']);
+          var items = json["rss"]["channel"][0]["item"];
+          for (var j = 0; j < 1; j++) {
+            var unq_str = items[j]["link"][0].split('-')
+            var newsitem_id = unq_str[unq_str.length-1].split('.')[0];
+            try {
+              hn_result = Meteor.http.get(items[j]["link"][0]);
+            } catch (ex) {
+              hn_result = Meteor.http.get(items[1]["link"][0]);
+            }
+            
+            $ = cheerio.load(hn_result.content);
+            var title = $('section .title h1').text();
+            var date_posted = $('section .title .grayrow .date').text();
+            var image = $('section .articaltext .boxgrid img').attr('src');
+            var description = "";
+            $('section .articaltext p').each(function( index ) {
+              contents = $( this ).text();
+              if (contents.indexOf("पढ़ें") >= 0 || contents.indexOf("Tags:") >= 0 || contents.indexOf("Web Title:") >= 0 || contents.indexOf("Hindi news from Dainik Jagran") >= 0 || contents.indexOf("कमेंट करें") >= 0){
+                
+              }else{
+                description += "<p>"+contents+"</p>";
+              }
             });
+            
+            news = NewsContents.findOne({headline: title});
+            
+            if(news == undefined){
+              console.log("Inserting record in DB for " + feed_url);
+              NewsContents.insert({
+                news_feed_url_id: id,
+                news_item_id: newsitem_id,
+                image: image,
+                headline: title,
+                dateline: date_posted,
+                story: description,
+                createdAt: new Date()
+              });
+            }
           }
         }
       }
-      //~ news_contents = Meteor.http.call("GET", "http://daily.bhaskar.com/rss/Indore");
-      //~ var json = XML2JS.parse(news_contents['content']);
-      //~ console.log(json["rss"]["channel"][0]["item"]);
     }
 
     var cron = new Meteor.Cron( {
