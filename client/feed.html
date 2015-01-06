@@ -11,22 +11,22 @@
   </form>
 
   <table class="table">
-      <thead>
-        <tr>
-          <th>News Category Name</th>
-          <th>Feed Url</th>
-          <th>Action</th>
-        </tr>
-      </thead>
+    <thead>
+      <tr>
+        <th>News Category Name</th>
+        <th>Feed Url</th>
+        <th>Action</th>
+      </tr>
+    </thead>
 
-      <tbody>
-          {{#each feed_urls}}
-            <tr>
-              <td>{{get_news_display_name category_id}} - {{get_category_name category_id}}</td>
-              <td>{{feed_url}}</td>
-              <td><button class="delete btn btn-primary">&times;</button></td>
-            </tr>
-          {{/each}}
-      </tbody>
+    <tbody>
+        {{#each feed_urls}}
+          <tr>
+            <td>{{get_news_display_name category_id}} - {{get_category_name category_id}}</td>
+            <td>{{feed_url}}</td>
+            <td><button class="delete btn btn-primary">&times;</button></td>
+          </tr>
+        {{/each}}
+    </tbody>
   </table>
 </template>
