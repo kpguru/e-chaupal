@@ -480,48 +480,48 @@ if (Meteor.isServer) {
             }
           }
         }else{
-          console.log("Fetching record for " + news_feed_urls[i]["feed_url"]);
-          news_contents = Meteor.http.call("GET", feed_url);
-          var json = XML2JS.parse(news_contents['content']);
-          var items = json["rss"]["channel"][0]["item"];
-          for (var j = 0; j < 1; j++) {
-            var unq_str = items[j]["link"][0].split('-')
-            var newsitem_id = unq_str[unq_str.length-1].split('.')[0];
-            try {
-              hn_result = Meteor.http.get(items[j]["link"][0]);
-            } catch (ex) {
-
-            }
-            
-            $ = cheerio.load(hn_result.content);
-            var title = $('section .title h1').text();
-            var date_posted = $('section .title .grayrow .date').text();
-            var image = $('section .articaltext .boxgrid img').attr('src');
-            var description = "";
-            $('section .articaltext p').each(function( index ) {
-              contents = $( this ).text();
-              if (contents.indexOf("पढ़ें") >= 0 || contents.indexOf("Tags:") >= 0 || contents.indexOf("Web Title:") >= 0 || contents.indexOf("Hindi news from Dainik Jagran") >= 0 || contents.indexOf("कमेंट करें") >= 0){
-                
-              }else{
-                description += "<p>"+contents+"</p>";
-              }
-            });
-            
-            news = NewsContents.findOne({headline: title});
-            
-            if(news == undefined){
-              console.log("Inserting record in DB for " + feed_url);
-              NewsContents.insert({
-                news_feed_url_id: id,
-                news_item_id: newsitem_id,
-                image: image,
-                headline: title,
-                dateline: date_posted,
-                story: description,
-                createdAt: new Date()
-              });
-            }
-          }
+          //~ console.log("Fetching record for " + news_feed_urls[i]["feed_url"]);
+          //~ news_contents = Meteor.http.call("GET", feed_url);
+          //~ var json = XML2JS.parse(news_contents['content']);
+          //~ var items = json["rss"]["channel"][0]["item"];
+          //~ for (var j = 0; j < 1; j++) {
+            //~ var unq_str = items[j]["link"][0].split('-')
+            //~ var newsitem_id = unq_str[unq_str.length-1].split('.')[0];
+            //~ try {
+              //~ hn_result = Meteor.http.get(items[j]["link"][0]);
+            //~ } catch (ex) {
+//~ 
+            //~ }
+            //~ 
+            //~ $ = cheerio.load(hn_result.content);
+            //~ var title = $('section .title h1').text();
+            //~ var date_posted = $('section .title .grayrow .date').text();
+            //~ var image = $('section .articaltext .boxgrid img').attr('src');
+            //~ var description = "";
+            //~ $('section .articaltext p').each(function( index ) {
+              //~ contents = $( this ).text();
+              //~ if (contents.indexOf("पढ़ें") >= 0 || contents.indexOf("Tags:") >= 0 || contents.indexOf("Web Title:") >= 0 || contents.indexOf("Hindi news from Dainik Jagran") >= 0 || contents.indexOf("कमेंट करें") >= 0){
+                //~ 
+              //~ }else{
+                //~ description += "<p>"+contents+"</p>";
+              //~ }
+            //~ });
+            //~ 
+            //~ news = NewsContents.findOne({headline: title});
+            //~ 
+            //~ if(news == undefined){
+              //~ console.log("Inserting record in DB for " + feed_url);
+              //~ NewsContents.insert({
+                //~ news_feed_url_id: id,
+                //~ news_item_id: newsitem_id,
+                //~ image: image,
+                //~ headline: title,
+                //~ dateline: date_posted,
+                //~ story: description,
+                //~ createdAt: new Date()
+              //~ });
+            //~ }
+          //~ }
         }
       }
     }
